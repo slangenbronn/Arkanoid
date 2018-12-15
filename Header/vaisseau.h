@@ -5,18 +5,20 @@
 #include <iostream>
 
 #include "windows.h"
+#include "visuel.h"
 
-class Vaisseau
+class Vaisseau : public Visuel
 {
     public:
- 	Vaisseau();
-	void affiche(SDL_Surface* plancheSprites, SDL_Surface *win_surf);
-  int getVault();
-  void setVault(int v);
+ 		Vaisseau(SDL_Surface *plancheSprites);
+		//void affiche(SDL_Surface* plancheSprites, SDL_Surface *win_surf);
+ 		int getVault();
+ 		void setVault(int v);
+
 
     private:
-	  int vault;
-    SDL_Rect scrVaiss;
+		int vault;
+    	SDL_Rect scrVaiss;
 };
 
 #endif

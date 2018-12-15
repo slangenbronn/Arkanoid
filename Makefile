@@ -5,9 +5,9 @@ CC=g++
 SRCDIR=Src
 HEADDIR=Header
 EXECDIR=Exec
-sources=$(SRCDIR)/arkanoid.cpp $(SRCDIR)/jeux.cpp $(SRCDIR)/windows.cpp $(SRCDIR)/planche.cpp $(SRCDIR)/balle.cpp $(SRCDIR)/vaisseau.cpp
-objets=$(EXECDIR)/arkanoid.o $(EXECDIR)/jeux.o $(EXECDIR)/windows.o $(EXECDIR)/planche.o $(EXECDIR)/balle.o $(EXECDIR)/vaisseau.o
-dep=$(HEADDIR)/jeux.h $(HEADDIR)/windows.h $(HEADDIR)/planche.h $(HEADDIR)/balle.h $(HEADDIR)/vaisseau.h
+sources=$(SRCDIR)/arkanoid.cpp $(SRCDIR)/jeux.cpp $(SRCDIR)/windows.cpp $(SRCDIR)/planche.cpp $(SRCDIR)/balle.cpp $(SRCDIR)/vaisseau.cpp $(SRCDIR)/brique.cpp $(SRCDIR)/normalBrique.cpp $(SRCDIR)/visuel.cpp
+objets=$(EXECDIR)/arkanoid.o $(EXECDIR)/jeux.o $(EXECDIR)/windows.o $(EXECDIR)/planche.o $(EXECDIR)/balle.o $(EXECDIR)/vaisseau.o $(EXECDIR)/brique.o $(EXECDIR)/normalBrique.o $(EXECDIR)/visuel.o
+dep=$(HEADDIR)/jeux.h $(HEADDIR)/windows.h $(HEADDIR)/planche.h $(HEADDIR)/balle.h $(HEADDIR)/vaisseau.h $(HEADDIR)/brique.h $(HEADDIR)/normalBrique.h $(HEADDIR)/visuel.h
 
 #definition des options d'edition des liens
 LDFLAGS=`sdl2-config --libs --cflags`
@@ -38,6 +38,14 @@ $(EXECDIR)/jeux.o: $(SRCDIR)/jeux.cpp $(HEADDIR)/jeux.h $(HEADDIR)/windows.h $(H
 $(EXECDIR)/arkanoid.o: $(SRCDIR)/arkanoid.cpp $(HEADDIR)/jeux.h
 	$(CC) -c $(SRCDIR)/arkanoid.cpp $(LDFLAGS) -o $(EXECDIR)/arkanoid.o
 
+$(EXECDIR)/brique.o: $(SRCDIR)/brique.cpp $(HEADDIR)/brique.h
+	$(CC) -c $(SRCDIR)/brique.cpp $(LDFLAGS) -o $(EXECDIR)/brique.o
+
+$(EXECDIR)/normalBrique.o: $(SRCDIR)/normalBrique.cpp $(HEADDIR)/normalBrique.h
+	$(CC) -c $(SRCDIR)/normalBrique.cpp $(LDFLAGS) -o $(EXECDIR)/normalBrique.o
+
+$(EXECDIR)/visuel.o: $(SRCDIR)/visuel.cpp $(HEADDIR)/visuel.h
+	$(CC) -c $(SRCDIR)/visuel.cpp $(LDFLAGS) -o $(EXECDIR)/visuel.o
 
 #nettoyage
 clean:

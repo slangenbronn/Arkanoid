@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-int x_vault;
+int x_X;
 int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
@@ -29,13 +29,18 @@ int main(int argc, char** argv)
 				switch (event.key.keysym.sym)
 				{
 					// touche clavier
-					case SDLK_LEFT:  j.v.setVault(j.v.getVault()-10); break;
-					case SDLK_RIGHT: j.v.setVault(j.v.getVault()+10); break;
+					case SDLK_LEFT:  
+						std::cout << "gauche" << std::endl;
+						j.getVaisseau()->setX(j.getVaisseau()->getX()-10); 
+						break;
+					case SDLK_RIGHT: 
+						j.getVaisseau()->setX(j.getVaisseau()->getX()+10);
+						break;
 					case SDLK_ESCAPE: quit = true; break;
 					default: break;
 				}
 				break;
-			case SDL_MOUSEMOTION:	j.v.setVault(j.v.getVault()+event.motion.xrel);	break;
+			case SDL_MOUSEMOTION:	j.getVaisseau()->setX(j.getVaisseau()->getX()+event.motion.xrel);	break;
 			case SDL_MOUSEBUTTONDOWN:
 				std::cout << "mouse click " << event.button.button << std::endl;
 				break;
