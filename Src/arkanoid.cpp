@@ -1,5 +1,5 @@
 #include <SDL2/SDL.h>
-#include "jeux.h"
+#include "../Header/jeux.h"
 
 #include <iostream>
 
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 				{
 					// touche clavier
 					case SDLK_LEFT:  j.v.setVault(j.v.getVault()-10); break;
-					case SDLK_RIGHT: j.v.setVault(j.v.getVault()-10); break;
+					case SDLK_RIGHT: j.v.setVault(j.v.getVault()+10); break;
 					case SDLK_ESCAPE: quit = true; break;
 					default: break;
 				}

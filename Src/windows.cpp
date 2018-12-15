@@ -1,4 +1,4 @@
-#include "windows.h"
+#include "../Header/windows.h"
 
 Window::Window(){
 	pWindow = SDL_CreateWindow("Arknoid", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 600, 600, SDL_WINDOW_SHOWN);

@@ -1,4 +1,4 @@
-#include "jeux.h"
+#include "../Header/jeux.h"
 
 Jeux::Jeux(){
 	tb[0] = Balle(w.getSurface());

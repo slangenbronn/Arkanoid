@@ -1,4 +1,4 @@
-#include "vaisseau.h"
+#include "../Header/vaisseau.h"
 
 Vaisseau::Vaisseau(){
 	scrVaiss = { 128,0,128,32 };

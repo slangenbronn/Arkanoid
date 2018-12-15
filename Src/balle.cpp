@@ -1,4 +1,4 @@
-#include "balle.h"
+#include "../Header/balle.h"
 
 Balle::Balle(){
 

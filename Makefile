@@ -1,41 +1,45 @@
 #definition du compilateur
 CC=g++
 
+#definition des fichiers et dossiers
+SRCDIR=Src
+HEADDIR=Header
+EXECDIR=Exec
+sources=$(SRCDIR)/arkanoid.cpp $(SRCDIR)/jeux.cpp $(SRCDIR)/windows.cpp $(SRCDIR)/planche.cpp $(SRCDIR)/balle.cpp $(SRCDIR)/vaisseau.cpp
+objets=$(EXECDIR)/arkanoid.o $(EXECDIR)/jeux.o $(EXECDIR)/windows.o $(EXECDIR)/planche.o $(EXECDIR)/balle.o $(EXECDIR)/vaisseau.o
+dep=$(HEADDIR)/jeux.h $(HEADDIR)/windows.h $(HEADDIR)/planche.h $(HEADDIR)/balle.h $(HEADDIR)/vaisseau.h
+
 #definition des options d'edition des liens
 LDFLAGS=`sdl2-config --libs --cflags`
 
 #definition des cibles avec leurs dependances et les regles de production
 
 # editions des liens
-arkanoid: arkanoid.o jeux.o windows.o planche.o balle.o vaisseau.o
-	$(CC) arkanoid.o jeux.o windows.o planche.o balle.o vaisseau.o $(LDFLAGS) -o arkanoid
+arkanoid: $(objets)
+	$(CC) $(objets) $(LDFLAGS) -o arkanoid
 
 
 #compilations
-windows.o: windows.cpp windows.h
-	$(CC) -c windows.cpp $(LDFLAGS) -o windows.o
+$(EXECDIR)/windows.o: $(SRCDIR)/windows.cpp $(HEADDIR)/windows.h
+	$(CC) -c $(SRCDIR)/windows.cpp $(LDFLAGS) -o $(EXECDIR)/windows.o
 
-planche.o: planche.cpp planche.h
-	$(CC) -c planche.cpp $(LDFLAGS) -o planche.o
+$(EXECDIR)/planche.o: $(SRCDIR)/planche.cpp $(HEADDIR)/planche.h
+	$(CC) -c $(SRCDIR)/planche.cpp $(LDFLAGS) -o $(EXECDIR)/planche.o
 
-balle.o: balle.cpp balle.h
-	$(CC) -c balle.cpp $(LDFLAGS) -o balle.o
+$(EXECDIR)/balle.o: $(SRCDIR)/balle.cpp $(HEADDIR)/balle.h
+	$(CC) -c $(SRCDIR)/balle.cpp $(LDFLAGS) -o $(EXECDIR)/balle.o
 
-vaisseau.o: vaisseau.cpp vaisseau.h
-	$(CC) -c vaisseau.cpp $(LDFLAGS) -o vaisseau.o
+$(EXECDIR)/vaisseau.o: $(SRCDIR)/vaisseau.cpp $(HEADDIR)/vaisseau.h
+	$(CC) -c $(SRCDIR)/vaisseau.cpp $(LDFLAGS) -o $(EXECDIR)/vaisseau.o
 
-jeux.o: jeux.cpp jeux.h windows.h balle.h vaisseau.h planche.h
-	$(CC) -c jeux.cpp $(LDFLAGS) -o jeux.o
+$(EXECDIR)/jeux.o: $(SRCDIR)/jeux.cpp $(HEADDIR)/jeux.h $(HEADDIR)/windows.h $(HEADDIR)/balle.h $(HEADDIR)/vaisseau.h $(HEADDIR)/planche.h
+	$(CC) -c $(SRCDIR)/jeux.cpp $(LDFLAGS) -o $(EXECDIR)/jeux.o
 
-arkanoid.o: arkanoid.cpp jeux.h
-	$(CC) -c arkanoid.cpp $(LDFLAGS) -o arkanoid.o
+$(EXECDIR)/arkanoid.o: $(SRCDIR)/arkanoid.cpp $(HEADDIR)/jeux.h
+	$(CC) -c $(SRCDIR)/arkanoid.cpp $(LDFLAGS) -o $(EXECDIR)/arkanoid.o
 
 
 #nettoyage
 clean:
+	rm -f *.o *~ *.bak $(EXECDIR)/*
 	rm -f *.o *~ *.bak arkanoid
-	rm -f *.o *~ *.bak jeux
-	rm -f *.o *~ *.bak windows
-	rm -f *.o *~ *.bak planche
-	rm -f *.o *~ *.bak balle
-	rm -f *.o *~ *.bak vaisseau

@@ -1,4 +1,4 @@
-#include "planche.h"
+#include "../Header/planche.h"
 
 Planche::Planche(){
 
