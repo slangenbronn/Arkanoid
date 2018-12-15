@@ -11,7 +11,6 @@ Jeux *Jeux::instance = NULL;
 Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128),
 	p2("./Arkanoid_sprites.bmp") {
 	tb[0] = Balle(this->p.getSprites(), w.getSurface());
-	this->brique = new NormalBrique(0, 0, 30, 15, {0, 0, 30, 15}, p2.getSprites(), 1, 50);
 
 	//this->briques = std::vector<Brique*>(MAX_COL);
 	//this->briques[0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
@@ -58,8 +57,6 @@ void Jeux::draw(){
 	}
 
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
-
-	brique->affiche(w.getSurface());
 
 
 	for (int i=0; i < MAX_LIGNE; ++i){

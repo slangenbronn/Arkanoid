@@ -31,7 +31,6 @@ class Jeux
 		static const int MAX_COL;
 		static const int MAX_LIGNE;
 		std::vector<std::vector<Brique*>> briques;
-		Brique* brique;
     bool quit;
 };
 
