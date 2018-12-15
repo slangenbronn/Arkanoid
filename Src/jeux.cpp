@@ -2,8 +2,11 @@
 #include "../Header/brique.h"
 #include "../Header/normalBrique.h"
 
+
 const int Jeux::MAX_COL = 25;
 const int Jeux::MAX_LIGNE = 13;
+
+Jeux *Jeux::instance = NULL;
 
 Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128),
 	p2("./Arkanoid_sprites.bmp") {
@@ -21,6 +24,15 @@ Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2,
 	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 30, 15}, p2.getSprites());
 
 	quit = false;
+}
+
+Jeux *Jeux::getInstance(){
+	if (NULL == instance)
+  {
+    instance =  new Jeux;
+  }
+
+    return instance;
 }
 
 bool Jeux::getQuit(){
