@@ -9,12 +9,10 @@
 
 class Vaisseau : public Visuel
 {
-    public:
-   		Vaisseau(SDL_Surface *plancheSprites, int x, int y, int width);
+  public:
+   	Vaisseau(SDL_Surface *plancheSprites, int x, int y, int width);
 
-
-    private:
-
+  private:
 };
 
 #endif
