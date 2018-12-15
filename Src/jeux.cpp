@@ -2,13 +2,15 @@
 #include "../Header/brique.h"
 #include "../Header/normalBrique.h"
 
-const int Jeux::MAX_COL = 10;
-const int Jeux::MAX_LIGNE = 10;
+
+const int Jeux::MAX_COL = 25;
+const int Jeux::MAX_LIGNE = 13;
+
+Jeux *Jeux::instance = NULL;
 
 Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128),
 	p2("./Arkanoid_sprites.bmp") {
 	tb[0] = Balle(this->p.getSprites(), w.getSurface());
-	this->brique = new NormalBrique(0,0, {0, 0, 31, 15}, p2.getSprites());
 
 	//this->briques = std::vector<Brique*>(MAX_COL);
 	//this->briques[0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
@@ -17,19 +19,19 @@ Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2,
 	for (int i = 0; i < MAX_LIGNE; ++i){
 		this->briques[i] = std::vector<Brique*>(MAX_COL);	
 	}
-//	this->briques[0] = std::vector<Brique*>(MAX_COL);
 
-	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
-	//std::cout << "je suis beau" << std::endl;
-/*
-	for (std::vector<std::vector<Brique>>::iterator i = briques.begin(); i != briques.end(); ++i){
-		for (std::vector<std::vector<Brique>>::iterator i = briques.begin(); i != briques.end(); ++i){
-			
-		}
-	}
-	*/
+	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 30, 15}, p2.getSprites());
 
 	quit = false;
+}
+
+Jeux *Jeux::getInstance(){
+	if (NULL == instance)
+  {
+    instance =  new Jeux;
+  }
+
+    return instance;
 }
 
 bool Jeux::getQuit(){
@@ -56,8 +58,6 @@ void Jeux::draw(){
 
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
 
-	brique->affiche(w.getSurface());
-
 
 	for (int i=0; i < MAX_LIGNE; ++i){
 		for (int j = 0; j < MAX_COL; ++j){
@@ -66,8 +66,6 @@ void Jeux::draw(){
 			}
 		}
 	}
-	
-	//briques[0][0]->affiche(w.getSurface());
 
 	v.affiche(w.getSurface());
 }
@@ -119,5 +117,9 @@ void Jeux::joue(){
 
 
 Jeux::~Jeux(){
-	delete(brique);
+	for (int i = 0; i < MAX_LIGNE; ++i){
+		for (int j = 0; j < MAX_COL; ++j){
+			delete(briques[i][j]);
+		}
+	}
 }

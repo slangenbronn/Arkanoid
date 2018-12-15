@@ -19,6 +19,7 @@ class Balle : public Visuel
       int getSpeedY();
       SDL_Rect getSrc();
       void reset(SDL_Surface* win_surf);
+      bool collisionBrique(SDL_Rect visu);
 
     private:
       //SDL_Rect ball;

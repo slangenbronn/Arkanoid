@@ -1,7 +1,7 @@
 #include "../Header/normalBrique.h"
 
 NormalBrique::NormalBrique(int x, int y, SDL_Rect src, SDL_Surface* plancheSprites)
-	: Brique(x, y, 2, 1, src, plancheSprites, solidite, points){
+	: Brique(x, y, 15, 30, src, plancheSprites, solidite, points){
 
 }
 

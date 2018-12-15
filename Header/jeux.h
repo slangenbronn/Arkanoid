@@ -14,6 +14,7 @@ class Jeux
   public:
  		Jeux();
 		~Jeux();
+    static Jeux *getInstance();
     void draw();
   	void joue();
     Window w;
@@ -25,12 +26,13 @@ class Jeux
 
 	private:
 		Planche p2;
+    static Jeux *instance;
 		Vaisseau v;
 		static const int MAX_COL;
 		static const int MAX_LIGNE;
 		std::vector<std::vector<Brique*>> briques;
-		Brique* brique;
     bool quit;
 };
+
 
 #endif //JEUX_H

@@ -3,7 +3,7 @@ Balle::Balle(): Visuel(10, 10, 5, 5, { 0,64,24,24 }, plancheSprites){
 
 }
 
-Balle::Balle(SDL_Surface *plancheSprites, SDL_Surface* win_surf) 
+Balle::Balle(SDL_Surface *plancheSprites, SDL_Surface* win_surf)
 	: Visuel(win_surf->w / 2, win_surf->h / 2, 5, 5, { 0,64,24,24 }, plancheSprites){
 
 //	ball.x = win_surf->w / 2;
@@ -38,6 +38,50 @@ void Balle::reset(SDL_Surface* win_surf){
 	this->y = win_surf->h / 2;
 	sx = 2;
 	sy = -7;
+}
+
+bool Balle::collisionBrique(SDL_Rect visu){
+	//Les cotes des rectangles
+	 int leftA, leftB;
+	 int rightA, rightB;
+	 int topA, topB;
+	 int bottomA, bottomB;
+
+	 //Calcul les cotes du rectangle A
+	 leftA = srcBall.x;
+	 rightA = srcBall.x + srcBall.w;
+	 topA = srcBall.y;
+	 bottomA = srcBall.y + srcBall.h;
+
+	 //Calcul les cotes du rectangle B
+	 leftB = visu.x;
+	 rightB = visu.x + visu.w;
+	 topB = visu.y;
+	 bottomB = visu.y + visu.h;
+
+	 //Tests de collision
+		if( bottomA <= topB )
+		{
+				return false;
+		}
+
+		if( topA >= bottomB )
+		{
+				return false;
+		}
+
+		if( rightA <= leftB )
+		{
+				return false;
+		}
+
+		if( leftA >= rightB )
+		{
+				return false;
+		}
+
+		//Si conditions collision detectee
+		return true;
 }
 
 void Balle::collisionVaisseau(int v, SDL_Surface* win_surf){

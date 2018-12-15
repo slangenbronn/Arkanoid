@@ -7,17 +7,18 @@ int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
     {
-		std::cerr <<"Echec de l'initialisation de la SDL "<<SDL_GetError() << std::endl;
-		return 1;
+  		std::cerr <<"Echec de l'initialisation de la SDL "<<SDL_GetError() << std::endl;
+  		return 1;
     }
 
-	Jeux j;
+  Jeux *j;
+  j = Jeux::getInstance();
 
-	while (!j.getQuit())
+	while (!j->getQuit())
 	{
-    j.joue();
-		j.draw();
-		SDL_UpdateWindowSurface(j.w.getWindow());
+    j->joue();
+		j->draw();
+		SDL_UpdateWindowSurface(j->w.getWindow());
 		SDL_Delay(20); // 50 fps
 	}
     SDL_Quit();
