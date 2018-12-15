@@ -1,8 +1,19 @@
 #include "../Header/jeux.h"
 
+Jeux *Jeux::instance = NULL;
+
 Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128) {
 	tb[0] = Balle(this->p.getSprites(), w.getSurface());
 	quit = false;
+}
+
+Jeux *Jeux::getInstance(){
+	if (NULL == instance)
+  {
+    instance =  new Jeux;
+  }
+
+    return instance;
 }
 
 bool Jeux::getQuit(){

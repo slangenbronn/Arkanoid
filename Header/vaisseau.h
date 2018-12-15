@@ -7,6 +7,7 @@
 #include "windows.h"
 #include "visuel.h"
 
+
 class Vaisseau : public Visuel
 {
     public:
