@@ -13,7 +13,6 @@ void Visuel::affiche(SDL_Surface *win_surf){
 	SDL_Rect dest = { 0,0,0,0 };
 	dest.x = this->x;
 	dest.y = this->y;
-	std::cout << this->x  << " " << this->y << std::endl;
 	SDL_BlitSurface(this->plancheSprites, &src, win_surf, &dest);
 }
 

@@ -3,34 +3,18 @@
 
 #include <SDL2/SDL.h>
 #include "windows.h"
+#include "visuel.h"
 
-class Brique{
+class Brique : public Visuel{
 protected:
     int solidite;
-    int longueur;
-    int largeur;
     int points;
     //Capsule capsule;
 
-    // Position
-    int x;
-    int y;
-
-    // Sprite
-    SDL_Rect scrBrique;
 public:
-    Brique();
-    Brique(int x, int y, int solidite, int longueur, int largeur, int points);
-//    Brique(int x, int y);
+    Brique(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites, int solidite, int points);
     virtual ~Brique();
     int getSolidite();
-    int getLongueur();
-    int getLargeur();
     int getPoints();
-    int getX();
-    int getY();
-    virtual void touche() = 0;
-    virtual void affiche(SDL_Surface* plancheSprites, SDL_Surface *win_surf) = 0;
 };
-
 #endif // BRIQUE_H

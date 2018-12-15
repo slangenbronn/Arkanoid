@@ -5,10 +5,13 @@
 
 class NormalBrique : public Brique
 {
-public:
-    NormalBrique(int x, int y);
-    NormalBrique(int x, int y, int points);
-    virtual void affiche(SDL_Surface* plancheSprites, SDL_Surface *win_surf);
+	public:
+		/**
+		 * Constructeur par défaut
+		 * Correspond à la Brique normal standard
+		 */
+    NormalBrique(int x, int y, SDL_Rect src, SDL_Surface* plancheSprites);
+    NormalBrique(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites, int solidite, int points);
 };
 
 #endif // NORMALBRIQUE_H
