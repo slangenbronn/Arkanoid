@@ -11,14 +11,10 @@ class Vaisseau : public Visuel
 {
     public:
    		Vaisseau(SDL_Surface *plancheSprites, int x, int y, int width);
-  		//void affiche(SDL_Surface* plancheSprites, SDL_Surface *win_surf);
-   		int getVault();
-   		void setVault(int v);
 
 
     private:
-		  int vault;
-    	SDL_Rect scrVaiss;
+
 };
 
 #endif
