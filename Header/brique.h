@@ -12,11 +12,9 @@ protected:
     //Capsule capsule;
 
 public:
-    //Brique(int x, int y, int solidite, int longueur, int largeur, int points);
     Brique(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites, int solidite, int points);
     virtual ~Brique();
     int getSolidite();
     int getPoints();
 };
-
 #endif // BRIQUE_H

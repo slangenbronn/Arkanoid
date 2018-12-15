@@ -1,7 +1,34 @@
 #include "../Header/jeux.h"
+#include "../Header/brique.h"
+#include "../Header/normalBrique.h"
 
-Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128) {
+const int Jeux::MAX_COL = 10;
+const int Jeux::MAX_LIGNE = 10;
+
+Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128),
+	p2("./Arkanoid_sprites.bmp") {
 	tb[0] = Balle(this->p.getSprites(), w.getSurface());
+	this->brique = new NormalBrique(0,0, {0, 0, 31, 15}, p2.getSprites());
+
+	//this->briques = std::vector<Brique*>(MAX_COL);
+	//this->briques[0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
+	
+	this->briques = std::vector<std::vector<Brique*>>(MAX_LIGNE);
+	for (int i = 0; i < MAX_LIGNE; ++i){
+		this->briques[i] = std::vector<Brique*>(MAX_COL);	
+	}
+//	this->briques[0] = std::vector<Brique*>(MAX_COL);
+
+	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
+	//std::cout << "je suis beau" << std::endl;
+/*
+	for (std::vector<std::vector<Brique>>::iterator i = briques.begin(); i != briques.end(); ++i){
+		for (std::vector<std::vector<Brique>>::iterator i = briques.begin(); i != briques.end(); ++i){
+			
+		}
+	}
+	*/
+
 	quit = false;
 }
 
@@ -29,6 +56,19 @@ void Jeux::draw(){
 
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
 
+	brique->affiche(w.getSurface());
+
+
+	for (int i=0; i < MAX_LIGNE; ++i){
+		for (int j = 0; j < MAX_COL; ++j){
+			if(briques[i][j] != NULL){
+				briques[i][j]->affiche(w.getSurface());
+			}
+		}
+	}
+	
+	//briques[0][0]->affiche(w.getSurface());
+
 	v.affiche(w.getSurface());
 }
 
@@ -36,8 +76,6 @@ Vaisseau* Jeux::getVaisseau(){
 	return &this->v;
 }
 
-const int Jeux::MAX_COL = 10;
-const int Jeux::MAX_LIGNE = 10;
 
 void Jeux::joue(){
 	SDL_Event event;
@@ -77,4 +115,9 @@ void Jeux::joue(){
 			default: break;
 		}
 	}
+}
+
+
+Jeux::~Jeux(){
+	delete(brique);
 }
