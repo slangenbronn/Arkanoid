@@ -1,6 +1,6 @@
 #include "../Header/vaisseau.h"
 
-Vaisseau::Vaisseau(SDL_Surface *plancheSprites) : Visuel(8, 2, 5, 5, { 128,0,128,32 }, plancheSprites){
+Vaisseau::Vaisseau(SDL_Surface *plancheSprites, int x, int y, int width) : Visuel(x, y, width, 32, { 128,0,128,32 }, plancheSprites){
 }
 
 int Vaisseau::getVault(){

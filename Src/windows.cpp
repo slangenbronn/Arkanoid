@@ -1,7 +1,9 @@
 #include "../Header/windows.h"
 
-Window::Window(){
-	pWindow = SDL_CreateWindow("Arknoid", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 600, 600, SDL_WINDOW_SHOWN);
+Window::Window(int width, int height){
+	setWidth(width);
+	setHeight(height);
+	pWindow = SDL_CreateWindow("Arknoid", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
 	win_surf = SDL_GetWindowSurface(pWindow);
 	srcBg = { 0,128, 96,128 };
 	dest = { 0,0,0,0 };
@@ -34,7 +36,24 @@ SDL_Rect Window::getDest(){
 SDL_Rect Window::getSrc(){
 	return srcBg;
 }
+
 void Window::setDest(int x, int y){
 	dest.x = x;
 	dest.y = y;
+}
+
+void Window::setWidth(int x){
+	width = x;
+}
+
+void Window::setHeight(int y){
+	height = y;
+}
+
+int Window::getWidth(){
+	return width;
+}
+
+int Window::getHeight(){
+	return height;
 }

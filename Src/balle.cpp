@@ -27,11 +27,20 @@ void Balle::collisionBord(SDL_Surface *win_surf){
 		sy *= -1;
 }
 
-void Balle::toucheBas(SDL_Surface *win_surf){
+bool Balle::toucheBas(SDL_Surface *win_surf){
 
 	// touche bas -> rouge
 	if (ball.y >(win_surf->h - 25))
-		srcBall.y = 64;
+		return true;
+	else
+		return false;
+}
+
+void Balle::reset(SDL_Surface* win_surf){
+	ball.x = win_surf->w / 2;
+	ball.y = win_surf->h / 2;
+	sx = 2;
+	sy = -7;
 }
 
 void Balle::collisionVaisseau(int v, SDL_Surface* win_surf){

@@ -1,7 +1,6 @@
 #include "../Header/jeux.h"
 
-Jeux::Jeux(): v(this->p.getSprites()) {
-	//this->v(this->p.getSprites());
+Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128) {
 	tb[0] = Balle(w.getSurface());
 	quit = false;
 }
@@ -24,7 +23,9 @@ void Jeux::draw(){
 
 	tb[0].collisionBord(w.getSurface());
 
-	tb[0].toucheBas(w.getSurface());
+	if(tb[0].toucheBas(w.getSurface())){
+		tb[0].reset(w.getSurface());
+	}
 
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
 
@@ -44,24 +45,36 @@ void Jeux::joue(){
 	{
 		switch (event.type)
 		{
-		case SDL_QUIT:
-			setQuit(true);
-			break;
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym)
-			{
-				// touche clavier
-				case SDLK_LEFT:  v.setX(v.getX()-10); break;
-				case SDLK_RIGHT: v.setX(v.getX()+10); break;
-				case SDLK_ESCAPE: quit = true; break;
-				default: break;
-			}
-			break;
-		case SDL_MOUSEMOTION:	v.setX(v.getX()+event.motion.xrel);	break;
-		case SDL_MOUSEBUTTONDOWN:
-			std::cout << "mouse click " << event.button.button << std::endl;
-			break;
-		default: break;
+			case SDL_QUIT:
+				setQuit(true);
+				break;
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym)
+				{
+					// touche clavier
+					case SDLK_LEFT:
+						if(v.getX()-MAX_LIGNE >= 0){
+								v.setX(v.getX()-MAX_LIGNE);
+						}
+						break;
+					case SDLK_RIGHT:
+						if(v.getX()+MAX_LIGNE+128 <= w.getWidth()){
+								v.setX(v.getX()+MAX_LIGNE);
+						}
+						break;
+					case SDLK_ESCAPE: quit = true; break;
+					default: break;
+				}
+				break;
+			case SDL_MOUSEMOTION:
+				if((v.getX()+event.motion.xrel+128 <= w.getWidth()) and (v.getX()+event.motion.xrel >= 0)){
+						v.setX(v.getX()+event.motion.xrel);
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				std::cout << "mouse click " << event.button.button << std::endl;
+				break;
+			default: break;
 		}
 	}
 }

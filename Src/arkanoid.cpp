@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-int x_X;
 int main(int argc, char** argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 )
@@ -16,7 +15,7 @@ int main(int argc, char** argv)
 
 	while (!j.getQuit())
 	{
-    	j.joue();
+    j.joue();
 		j.draw();
 		SDL_UpdateWindowSurface(j.w.getWindow());
 		SDL_Delay(20); // 50 fps
