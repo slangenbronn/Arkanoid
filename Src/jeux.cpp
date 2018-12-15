@@ -117,5 +117,9 @@ void Jeux::joue(){
 
 
 Jeux::~Jeux(){
-	delete(brique);
+	for (int i = 0; i < MAX_LIGNE; ++i){
+		for (int j = 0; j < MAX_COL; ++j){
+			delete(briques[i][j]);
+		}
+	}
 }
