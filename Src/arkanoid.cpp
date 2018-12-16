@@ -17,6 +17,7 @@ int main(int argc, char** argv)
 	while (!j->getQuit())
 	{
     j->joue();
+    std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA" << std::endl;
 		j->draw();
 		SDL_UpdateWindowSurface(j->w.getWindow());
 		SDL_Delay(20); // 50 fps

@@ -29,6 +29,14 @@ int Visuel::getY(){
 	return this->y;
 }
 
+bool Visuel::collision(Visuel *v){
+//Tests de collision
+	return !((v->getX() >= this->x + this->largeur)	// trop à droite
+		|| (v->getX() + v->getLargeur() <= this->x)		// trop à gauche
+		|| (v->getY() >= this->y + this->longueur)		// trop en bas
+		|| (v->getY() + v->getLongueur() <= this->y)); // trop en haut
+}
+
 void Visuel::setLongueur(int longueur){
 	this->longueur = longueur;
 }

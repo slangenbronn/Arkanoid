@@ -40,56 +40,27 @@ void Balle::reset(SDL_Surface* win_surf){
 	sy = -7;
 }
 
-bool Balle::collisionBrique(SDL_Rect visu){
-	//Les cotes des rectangles
-	 int leftA, leftB;
-	 int rightA, rightB;
-	 int topA, topB;
-	 int bottomA, bottomB;
-
-	 //Calcul les cotes du rectangle A
-	 leftA = srcBall.x;
-	 rightA = srcBall.x + srcBall.w;
-	 topA = srcBall.y;
-	 bottomA = srcBall.y + srcBall.h;
-
-	 //Calcul les cotes du rectangle B
-	 leftB = visu.x;
-	 rightB = visu.x + visu.w;
-	 topB = visu.y;
-	 bottomB = visu.y + visu.h;
-
-	 //Tests de collision
-		if( bottomA <= topB )
-		{
-				return false;
-		}
-
-		if( topA >= bottomB )
-		{
-				return false;
-		}
-
-		if( rightA <= leftB )
-		{
-				return false;
-		}
-
-		if( leftA >= rightB )
-		{
-				return false;
-		}
-
-		//Si conditions collision detectee
-		return true;
-}
-
 void Balle::collisionVaisseau(int v, SDL_Surface* win_surf){
 
 	if ((this->x > v) && (this->x < v+128) && (this->y > win_surf->h - 32 -20))
 	{
 		sy *= -1;
 		srcBall.y = 96; // -> vert
+	}
+}
+
+void Balle::collision(Visuel *v){
+	if(Visuel::collision(v)){
+		//std::cout << "col" << std::endl;
+		if((v->getX() < this->x + this->longueur) || (v->getX() + v->getLongueur() > this->x)){
+			//std::cout << this->sx;
+			this->sy *= -1;
+			//std::cout << " " << this->sx << "sx" << std::endl;
+		}
+		else if( (v->getY() < this->y + this->largeur) || (v->getY() + v->getLargeur() > this->y)){
+			this->sx *= -1;
+			//std::cout << "sy" << std::endl;
+		}
 	}
 }
 /*
@@ -106,6 +77,7 @@ SDL_Rect Balle::getBall(){
 int Balle::getSpeedX(){
 	return sx;
 }
+
 int Balle::getSpeedY(){
 	return sy;
 }
