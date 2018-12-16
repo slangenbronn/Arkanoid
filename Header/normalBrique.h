@@ -12,6 +12,8 @@ class NormalBrique : public Brique
 		 */
     NormalBrique(int x, int y, SDL_Rect src, SDL_Surface* plancheSprites);
     NormalBrique(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites, int solidite, int points);
+
+    virtual void touche(Visuel *v);
 };
 
 #endif // NORMALBRIQUE_H

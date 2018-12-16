@@ -12,6 +12,7 @@ class Vaisseau : public Visuel
 {
   public:
    	Vaisseau(SDL_Surface *plancheSprites, int x, int y, int width);
+   	virtual void touche(Visuel *v);
 
   private:
 };

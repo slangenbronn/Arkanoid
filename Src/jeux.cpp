@@ -48,7 +48,6 @@ void Jeux::draw(){
 
 	tb[0].affiche(w.getSurface());
 
-	std::cout << "X : " << tb[0].getSpeedX() << "   Y : " << tb[0].getSpeedY() <<  std::endl << std::endl << std::endl; 
 	tb[0].deplacement(tb[0].getSpeedX(), tb[0].getSpeedY());
 
 	tb[0].collisionBord(w.getSurface());
