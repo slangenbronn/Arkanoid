@@ -58,6 +58,8 @@ void Jeux::draw(){
 	}
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
 
+	//tb[0].collision(v);
+
 
 	for (int i=0; i < MAX_LIGNE; ++i){
 		for (int j = 0; j < MAX_COL; ++j){
