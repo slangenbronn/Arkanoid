@@ -26,6 +26,10 @@ public:
     int getY();
 
     bool collision(Visuel *v);
+    /**
+     * Fonction d'intéraction en cas de collision
+     */
+    virtual void touche(Visuel *v) = 0;
 
     void setLongueur(int longueur);
     void setLargeur(int largeur);

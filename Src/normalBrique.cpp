@@ -9,3 +9,7 @@ NormalBrique::NormalBrique(int x, int y, int longueur, int largeur, SDL_Rect src
 	:	Brique(x, y, longueur, largeur, src, plancheSprites, solidite, points){
 
 }
+
+void NormalBrique::touche(Visuel *v){
+	
+}

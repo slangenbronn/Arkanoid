@@ -31,10 +31,15 @@ int Visuel::getY(){
 
 bool Visuel::collision(Visuel *v){
 //Tests de collision
-	return !((v->getX() >= this->x + this->largeur)	// trop à droite
+	if(!((v->getX() >= this->x + this->largeur)	// trop à droite
 		|| (v->getX() + v->getLargeur() <= this->x)		// trop à gauche
 		|| (v->getY() >= this->y + this->longueur)		// trop en bas
-		|| (v->getY() + v->getLongueur() <= this->y)); // trop en haut
+		|| (v->getY() + v->getLongueur() <= this->y))){ // trop en haut
+		this->touche(v);
+		v->touche(this);
+		return true;
+	}
+	return false;
 }
 
 void Visuel::setLongueur(int longueur){
