@@ -15,6 +15,7 @@ class Jeux
  		Jeux();
 		~Jeux();
     static Jeux *getInstance();
+    //static Planche *getPlanche2();
     void draw();
   	void joue();
     Window w;
@@ -25,7 +26,7 @@ class Jeux
     bool getQuit();
 
 	private:
-		Planche p2;
+		static Planche P2;
     static Jeux *instance;
 		Vaisseau v;
 		static const int MAX_COL;

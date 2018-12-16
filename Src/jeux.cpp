@@ -2,14 +2,17 @@
 #include "../Header/brique.h"
 #include "../Header/normalBrique.h"
 
+#include "../Header/normalBriqueMaker.h"
+//#include "../Header/normalBriqueBuilder.h"
+#include "../Header/jauneNormalBriqueBuilder.h"
 
 const int Jeux::MAX_COL = 25;
 const int Jeux::MAX_LIGNE = 13;
+Planche Jeux::P2 = Planche("./Arkanoid_sprites.bmp");
 
 Jeux *Jeux::instance = NULL;
 
-Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128),
-	p2("./Arkanoid_sprites.bmp") {
+Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2, this->w.getHeight() - 32, 128) {
 	tb[0] = Balle(this->p.getSprites(), w.getSurface());
 
 	//this->briques = std::vector<Brique*>(MAX_COL);
@@ -17,10 +20,25 @@ Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2,
 	
 	this->briques = std::vector<std::vector<Brique*>>(MAX_LIGNE);
 	for (int i = 0; i < MAX_LIGNE; ++i){
-		this->briques[i] = std::vector<Brique*>(MAX_COL);	
+		this->briques[i] = std::vector<Brique*>(MAX_COL);
 	}
 
-	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 30, 15}, p2.getSprites());
+	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 30, 15}, Jeux::P2.getSprites());
+
+	NormalBriqueMaker normalBriqueMaker;
+	JauneNormalBriqueBuilder jauneNormalBriqueBuilder;
+
+	normalBriqueMaker.makeNormalBrique(&jauneNormalBriqueBuilder);
+	this->briques[0][1] = new NormalBrique(360, 360, {0, 0, 30, 15}, Jeux::P2.getSprites());
+	this->briques[0][2] = new NormalBrique(500, 360, {0, 0, 30, 15}, Jeux::P2.getSprites());
+
+	//Brique* b = normalBriqueMaker.getNormalBrique();
+	//this->briques[0][1] = normalBriqueMaker.getNormalBrique();
+	//this->briques[0][1]->setX(360);
+	//this->briques[0][1]->setY(360);
+	//cook.makePizza(&hawaiianPizzaBuilder);
+	//cook.openPizza();
+
 
 	quit = false;
 }

@@ -16,6 +16,7 @@ protected:
     SDL_Rect src;
     SDL_Surface* plancheSprites; // Planche associé au sprite
 public:
+    Visuel();
     Visuel(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites);
 
     void affiche(SDL_Surface *win_surf);
@@ -29,7 +30,7 @@ public:
     void setLargeur(int largeur);
     void setX(int x);
     void setY(int y);
-
+    void setSprites(SDL_Rect src, SDL_Surface* plancheSprites);
 };
 
 #endif // VISUEL_H

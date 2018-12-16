@@ -1,5 +1,9 @@
 #include "../Header/visuel.h"
 
+Visuel::Visuel(){
+
+}
+
 Visuel::Visuel(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surface* plancheSprites){
 	this->x = x;
 	this->y = y;
@@ -41,4 +45,9 @@ void Visuel::setX(int x){
 }
 void Visuel::setY(int y){
 	this->y = y;
+}
+
+void Visuel::setSprites(SDL_Rect src, SDL_Surface* plancheSprites){
+	this->src = src;
+	this->plancheSprites = plancheSprites;
 }

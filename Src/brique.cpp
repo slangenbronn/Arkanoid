@@ -5,6 +5,10 @@ Brique::Brique(int x, int y, int longueur, int largeur, SDL_Rect src, SDL_Surfac
 
 }
 
+Brique::Brique(){
+
+}
+
 Brique::~Brique(){
 
 }
