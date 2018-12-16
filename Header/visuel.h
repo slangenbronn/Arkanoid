@@ -25,6 +25,8 @@ public:
     int getX();
     int getY();
 
+    bool collision(Visuel *v);
+
     void setLongueur(int longueur);
     void setLargeur(int largeur);
     void setX(int x);

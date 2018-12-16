@@ -14,13 +14,13 @@ Jeux::Jeux(): w(600, 600), v(this->p.getSprites(), this->w.getWidth()/2 - 128/2,
 
 	//this->briques = std::vector<Brique*>(MAX_COL);
 	//this->briques[0] = new NormalBrique(60,60, {0, 0, 31, 15}, p2.getSprites());
-	
+
 	this->briques = std::vector<std::vector<Brique*>>(MAX_LIGNE);
 	for (int i = 0; i < MAX_LIGNE; ++i){
-		this->briques[i] = std::vector<Brique*>(MAX_COL);	
+		this->briques[i] = std::vector<Brique*>(MAX_COL);
 	}
 
-	this->briques[0][0] = new NormalBrique(60,60, {0, 0, 30, 15}, p2.getSprites());
+	this->briques[0][0] = new NormalBrique(350,60, {0, 0, 30, 15}, p2.getSprites());
 
 	quit = false;
 }
@@ -48,6 +48,7 @@ void Jeux::draw(){
 
 	tb[0].affiche(w.getSurface());
 
+	std::cout << "X : " << tb[0].getSpeedX() << "   Y : " << tb[0].getSpeedY() <<  std::endl << std::endl << std::endl; 
 	tb[0].deplacement(tb[0].getSpeedX(), tb[0].getSpeedY());
 
 	tb[0].collisionBord(w.getSurface());
@@ -55,14 +56,23 @@ void Jeux::draw(){
 	if(tb[0].toucheBas(w.getSurface())){
 		tb[0].reset(w.getSurface());
 	}
-
 	tb[0].collisionVaisseau(v.getX(), w.getSurface());
+
+	//tb[0].collision(v);
 
 
 	for (int i=0; i < MAX_LIGNE; ++i){
 		for (int j = 0; j < MAX_COL; ++j){
 			if(briques[i][j] != NULL){
 				briques[i][j]->affiche(w.getSurface());
+			}
+		}
+
+		for (int i=0; i < MAX_LIGNE; ++i){
+			for (int j = 0; j < MAX_COL; ++j){
+				if(briques[i][j] != NULL){
+					tb[0].collision(briques[i][j]);
+				}
 			}
 		}
 	}
