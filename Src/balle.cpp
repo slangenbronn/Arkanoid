@@ -49,30 +49,17 @@ void Balle::collisionVaisseau(int v, SDL_Surface* win_surf){
 	}
 }
 
-void Balle::collision(Visuel *v){
-	if(Visuel::collision(v)){
-		//std::cout << "col" << std::endl;
-		if((v->getX() < this->x + this->longueur) || (v->getX() + v->getLongueur() > this->x)){
-			//std::cout << this->sx;
-			this->sy *= -1;
-			//std::cout << " " << this->sx << "sx" << std::endl;
-		}
-		else if( (v->getY() < this->y + this->largeur) || (v->getY() + v->getLargeur() > this->y)){
-			this->sx *= -1;
-			//std::cout << "sy" << std::endl;
-		}
+void Balle::touche(Visuel *v){
+	if((v->getX() < this->x + this->longueur) || (v->getX() + v->getLongueur() > this->x)){
+		//std::cout << this->sx;
+		this->sy *= -1;
+		//std::cout << " " << this->sx << "sx" << std::endl;
+	}
+	else if( (v->getY() < this->y + this->largeur) || (v->getY() + v->getLargeur() > this->y)){
+		this->sx *= -1;
+		//std::cout << "sy" << std::endl;
 	}
 }
-/*
-void Balle::afficheBalle(SDL_Surface *plancheSprites, SDL_Surface *win_surf){
-
-	// affiche balle
-	SDL_BlitSurface(plancheSprites, &srcBall, win_surf, &ball);
-}
-
-SDL_Rect Balle::getBall(){
-	return ball;
-}*/
 
 int Balle::getSpeedX(){
 	return sx;

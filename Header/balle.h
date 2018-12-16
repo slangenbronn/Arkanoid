@@ -19,8 +19,8 @@ class Balle : public Visuel
       int getSpeedY();
       SDL_Rect getSrc();
       void reset(SDL_Surface* win_surf);
-      void collision(Visuel *v);
-
+      
+      virtual void touche(Visuel *v);
     private:
       //SDL_Rect ball;
   	  int sx;
